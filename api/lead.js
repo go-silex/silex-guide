@@ -123,6 +123,36 @@ async function pushAttio(lead, warnings) {
   if (!r.ok) throw new Error(`attio: ${JSON.stringify(j).slice(0, 200)}`);
 
   const recordId = j?.data?.id?.record_id;
+  const listId = process.env.ATTIO_LIST_ID;
+  if (recordId && listId) {
+    // Ajout à la liste (sans doublon si la personne y est déjà)
+    try {
+      const q = await fetch(`https://api.attio.com/v2/lists/${listId}/entries/query`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          filter: { parent_record_id: recordId },
+          limit: 1,
+        }),
+      });
+      const qj = await q.json();
+      if (!qj?.data?.length) {
+        await fetch(`https://api.attio.com/v2/lists/${listId}/entries`, {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            data: {
+              parent_record_id: recordId,
+              parent_object: "people",
+              entry_values: {},
+            },
+          }),
+        });
+      }
+    } catch {
+      warnings.push("attio: entrée liste non créée");
+    }
+  }
   if (recordId) {
     const niveau = lead.niveau
       ? `Niveau ${lead.niveau} — ${LEVEL_NAMES[lead.niveau] || "?"} (score ${lead.score}/20)`

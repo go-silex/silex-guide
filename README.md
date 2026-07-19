@@ -35,6 +35,7 @@ source ~/.config/silex/slack.env && SLACK_CHANNEL_LEADS=C0BJU9GNPPA node dev-ser
 | `SLACK_CHANNEL_LEADS` | oui | `C0BJU9GNPPA` = `#int-closing` |
 | `SLACK_WEBHOOK` | non | Repli si pas de bot token |
 | `ATTIO_API_KEY` | non | Fiche personne + note diagnostic dans Attio |
+| `ATTIO_LIST_ID` | non | Liste Attio « Guide Claude » (`1a45f1fa-3a03-4014-af69-08c3c9564c60`) |
 | `BREVO_API_KEY` | non | Contact + email d'envoi du guide |
 | `BREVO_LIST_ID` | non | Liste Brevo où ranger les leads |
 | `GUIDE_URL` | non | Base du lien guide dans l'email (défaut `https://s.gosilex.com/guide`) |
