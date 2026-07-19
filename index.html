@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Guide Claude — À quel niveau d'IA tourne ta boîte ? | Silex</title>
+  <meta name="description" content="5 questions pour situer ta boîte sur les 4 niveaux de l'entreprise AI-native, et recevoir le guide complet : cas d'usage par métier, cerveau partagé étape par étape, erreurs à éviter.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23E55B3C'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="./"><span class="logo-mark"></span>Silex</a>
+      <span class="header-tag">Le Guide Claude</span>
+    </div>
+  </header>
+
+  <!-- ═══ ÉTAPE 1 — Landing ═══ -->
+  <main id="step-landing">
+    <div class="wrap">
+      <section class="hero">
+        <span class="eyebrow">Le guide Claude — par Silex</span>
+        <h1>À quel niveau d'IA<br>tourne ta boîte&nbsp;?</h1>
+        <p class="sub">90&nbsp;% des PME sont bloquées au niveau&nbsp;1. En 5 questions, découvre ton niveau — et reçois le guide qu'on a écrit après être passés par les&nbsp;4&nbsp;: cas d'usage par métier, cerveau partagé étape par étape, et les erreurs à ne pas refaire.</p>
+        <div class="hero-cta">
+          <button class="btn" id="btn-start">Faire le diagnostic · 60 secondes</button>
+          <span class="hero-hint">5 questions · Le guide complet à la clé · Gratuit</span>
+        </div>
+        <div class="social-proof">🔥 Demandé plus de 100 fois en 24&nbsp;h sur LinkedIn</div>
+      </section>
+
+      <div class="levels-strip">
+        <div class="level-chip"><span class="n">1</span><div class="t">Le sceptique isolé</div></div>
+        <div class="level-chip"><span class="n">2</span><div class="t">Le productif</div></div>
+        <div class="level-chip"><span class="n">3</span><div class="t">L'architecte</div></div>
+        <div class="level-chip"><span class="n">4</span><div class="t">Le multiplicateur</div></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══ ÉTAPE 2 — Diagnostic ═══ -->
+  <main id="step-quiz" class="hidden">
+    <div class="wrap-narrow quiz-shell">
+      <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="quiz-count" id="quiz-count">Question 1 sur 5</div>
+      <h2 class="quiz-q" id="quiz-q"></h2>
+      <div class="options" id="quiz-options"></div>
+      <button class="btn-ghost quiz-back" id="btn-back">← Question précédente</button>
+    </div>
+  </main>
+
+  <!-- ═══ ÉTAPE 3 — Résultat + formulaire ═══ -->
+  <main id="step-result" class="hidden">
+    <div class="wrap-narrow result">
+      <div class="card result-card">
+        <div class="result-badge" id="result-badge"></div>
+        <h2 id="result-title"></h2>
+        <div class="result-score" id="result-score"></div>
+        <p class="result-desc" id="result-desc"></p>
+        <div class="result-block" id="result-block"></div>
+      </div>
+
+      <div class="card form-card">
+        <div class="form-head">
+          <h3>Reçois le guide complet — et débloque la suite</h3>
+          <p>Dis-nous où t'envoyer le guide, et ce qui te pèse le plus en ce moment. Pierre lit chaque réponse — et prépare parfois une démo personnalisée à partir de ton site.</p>
+        </div>
+        <div class="form-error" id="form-error"></div>
+        <form id="lead-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-prenom">Prénom</label>
+              <input type="text" id="f-prenom" name="prenom" autocomplete="given-name" required>
+            </div>
+            <div class="field">
+              <label for="f-nom">Nom</label>
+              <input type="text" id="f-nom" name="nom" autocomplete="family-name" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-email">Email pro</label>
+            <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" required>
+          </div>
+          <div class="field">
+            <label for="f-site">Le site de ta boîte</label>
+            <input type="url" id="f-site" name="site" placeholder="https://…" autocomplete="url" inputmode="url">
+          </div>
+          <div class="field">
+            <label for="f-douleur">Ton plus gros irritant en ce moment</label>
+            <select id="f-douleur" name="douleurCat" required>
+              <option value="" disabled selected>Choisis…</option>
+              <option>Des tâches répétitives qui bouffent nos semaines</option>
+              <option>Le savoir de la boîte éparpillé (têtes, mails, docs)</option>
+              <option>Des réponses trop lentes à nos clients</option>
+              <option>Onboarding et formation interminables</option>
+              <option>On utilise l'IA mais sans ROI visible</option>
+              <option>Autre chose</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-verbatim">Raconte en une phrase <span class="opt">(optionnel, mais précieux)</span></label>
+            <textarea id="f-verbatim" name="douleurTxt" placeholder="Ex. : on passe nos lundis à ressaisir des infos entre 3 outils…"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Website</label>
+            <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="consent">En envoyant ce formulaire, tu acceptes de recevoir le guide et d'être recontacté·e par Silex à propos de ton diagnostic. Pas de spam, désinscription en un clic.</p>
+          <button type="submit" class="btn btn-block" id="btn-submit">Recevoir le guide</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© Silex — <a href="https://gosilex.com">gosilex.com</a></span>
+      <a href="mailto:p@gosilex.com">p@gosilex.com</a>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

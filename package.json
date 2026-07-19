@@ -1,0 +1,10 @@
+{
+  "name": "silex-guide",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lead magnet Guide Claude — diagnostic 4 niveaux + capture leads (Silex)",
+  "scripts": {
+    "dev": "node dev-server.mjs"
+  }
+}

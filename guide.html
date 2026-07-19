@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les 4 niveaux de l'entreprise AI-native — Le guide | Silex</title>
+  <meta name="description" content="Le guide Silex : faire tourner ta boîte sur l'IA sans écrire une ligne de code. 4 niveaux, cas d'usage par métier, cerveau partagé étape par étape, erreurs à éviter.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23E55B3C'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    (function () {
+      var unlocked = false;
+      try { unlocked = sessionStorage.getItem("silex_guide_unlocked") === "1"; } catch (e) { /* no-op */ }
+      var k = new URLSearchParams(window.location.search).get("k");
+      if (k === "silex-4-niveaux") {
+        unlocked = true;
+        try { sessionStorage.setItem("silex_guide_unlocked", "1"); } catch (e) { /* no-op */ }
+      }
+      if (!unlocked) { window.location.replace("./"); }
+    })();
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="https://gosilex.com"><span class="logo-mark"></span>Silex</a>
+      <span class="header-tag">Le Guide Claude</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="guide-hero">
+      <div class="success-banner">✓ Guide débloqué — bonne lecture</div>
+      <span class="eyebrow">Le guide — par Silex</span>
+      <h1>Les 4 niveaux de l'entreprise AI-native</h1>
+      <p class="sub">Faire tourner ta boîte sur l'IA — sans écrire une ligne de code. Ce qu'on a appris en passant les 4 niveaux nous-mêmes, puis en les installant chez des dizaines d'entreprises.</p>
+    </section>
+  </div>
+
+  <div class="guide-layout">
+    <nav class="guide-nav" id="guide-nav">
+      <a href="#pourquoi">Pourquoi ce guide</a>
+      <a href="#niveau-1">Niveau 1 — Le sceptique isolé</a>
+      <a href="#niveau-2">Niveau 2 — Le productif</a>
+      <a href="#niveau-3">Niveau 3 — L'architecte</a>
+      <a href="#niveau-4">Niveau 4 — Le multiplicateur</a>
+      <a href="#erreurs">Les erreurs qu'on a faites</a>
+      <a href="#plan">Ton plan 30 jours</a>
+    </nav>
+
+    <div class="guide-content">
+      <section id="pourquoi">
+        <h2>Pourquoi ce guide</h2>
+        <p>McKinsey a sorti un chiffre qui devrait faire mal : plus de 80&nbsp;% des entreprises qui investissent dans l'IA ne voient <strong>aucun impact sur leur bottom line</strong>.</p>
+        <p>Sur le terrain, on voit la même chose. Un dirigeant d'agence de 25 personnes nous a dit récemment : <em>«&nbsp;On utilise ChatGPT tous les jours. Toute l'équipe. Mais honnêtement, je serais incapable de te dire si ça nous fait gagner de l'argent.&nbsp;»</em></p>
+        <p>On lui a posé 3 questions :</p>
+        <ul>
+          <li>Est-ce que l'IA connaît vos clients ?</li>
+          <li>Est-ce que toute l'équipe utilise le même contexte ?</li>
+          <li>Est-ce que vous capitalisez quelque part ce que l'IA apprend ?</li>
+        </ul>
+        <p>Trois fois non. Son problème, ce n'est pas l'IA. Ce n'est pas les prompts. C'est son <strong>niveau de maturité</strong>.</p>
+        <p>Chez Silex, on est passés par 4 niveaux. Chacun nous a pris moins d'un mois. Aujourd'hui, Claude connaît nos clients, nos deadlines, nos décisions — et Rocky, notre agent de maintenance, résout les tickets de nos clients en moins de 6 heures sans qu'on lui redise rien.</p>
+        <blockquote>On n'a écrit aucune ligne de code pour y arriver. Et on a fait toutes les erreurs possibles en chemin — elles sont documentées ici pour que tu ne les refasses pas.</blockquote>
+      </section>
+
+      <section id="niveau-1">
+        <h2>Niveau 1 — Le sceptique isolé</h2>
+        <p><strong>Où tu en es.</strong> Tu utilises Claude ou ChatGPT ponctuellement : reformuler un email, résumer un document, brainstormer. Chacun son compte, chacun dans son coin. Rien n'est connecté, rien n'est partagé.</p>
+        <p><strong>Le symptôme qui ne trompe pas.</strong> Tu passes 10 minutes à expliquer le contexte avant chaque demande. <em>«&nbsp;On est une agence B2B, on travaille avec des PME industrielles, notre ton c'est…&nbsp;»</em> Et tu recommences. À chaque fois. Depuis zéro.</p>
+        <p><strong>Le ROI.</strong> Des gains ponctuels. 15 minutes ici, 30 minutes là. Si tu coupais l'IA demain, personne ne verrait la différence dans tes résultats. C'est le test le plus honnête qui existe.</p>
+        <p><strong>Ce qui bloque.</strong> La croyance que «&nbsp;mieux prompter&nbsp;» va résoudre le problème. Non. Le problème, c'est l'absence de <strong>contexte persistant</strong>. Un stagiaire brillant à qui tu réexpliques ton métier chaque matin reste un stagiaire.</p>
+        <div class="metier">
+          <div class="m-title">Ce que ça donne par métier</div>
+          <ul>
+            <li><strong>Dirigeant</strong> — tu reformules des emails sensibles, tu résumes des documents longs. Utile, pas transformant.</li>
+            <li><strong>Commercial</strong> — tu améliores tes messages de prospection un par un. L'IA ne connaît ni ton offre ni tes prospects.</li>
+            <li><strong>Ops</strong> — tu rédiges plus vite des procédures que personne ne lira, parce qu'elles vivent dans un doc perdu.</li>
+          </ul>
+        </div>
+        <blockquote><strong>Pour passer au niveau 2 :</strong> arrête de chercher le prompt parfait. Choisis 3 tâches récurrentes qui te prennent plus de 30 minutes chacune, et délègue-les entièrement à l'IA pendant deux semaines. Pas de l'aide à la tâche : la tâche.</blockquote>
+      </section>
+
+      <section id="niveau-2">
+        <h2>Niveau 2 — Le productif</h2>
+        <p><strong>Le saut.</strong> Tu ne demandes plus à l'IA de t'aider à faire. Tu lui <strong>délègues</strong> : rédiger des briefs, trier des demandes entrantes, comparer des devis, préparer des comptes rendus. Et surtout, tu lui donnes du contexte structuré — tes personas, ton offre, ton ton de voix, des exemples de livrables.</p>
+        <p><strong>Un exemple réel.</strong> Pauline dirige une agence RP de 15 personnes. Avant : chaque communiqué demandait 45 minutes de rédaction plus 20 minutes de brief à l'IA. Après avoir structuré son contexte dans un projet dédié : 15 minutes par communiqué. À 30 communiqués par mois, c'est <strong>25 heures récupérées</strong>. Tous les mois.</p>
+        <p><strong>Le ROI.</strong> Plusieurs heures par semaine et par personne. OpenAI parle de 10 heures hebdomadaires quand c'est bien déployé. C'est le mode «&nbsp;copilote&nbsp;» : l'IA t'assiste, tu restes aux commandes.</p>
+        <div class="metier">
+          <div class="m-title">Ce que ça donne par métier</div>
+          <ul>
+            <li><strong>Dirigeant</strong> — l'IA prépare tes réunions (ordre du jour, historique, points de friction) et drafte tes réponses aux emails à enjeu.</li>
+            <li><strong>Commercial</strong> — l'IA rédige tes follow-ups à partir de tes notes de call, compare les besoins d'un prospect à tes cas clients.</li>
+            <li><strong>Ops</strong> — l'IA trie les demandes entrantes, drafte les réponses de premier niveau, tient tes checklists de production.</li>
+          </ul>
+        </div>
+        <p><strong>Ce qui bloque.</strong> C'est encore <strong>individuel</strong>. Toi, tu as ton contexte. Ton équipe n'y a pas accès. Quand quelqu'un trouve une bonne façon de travailler avec l'IA, il la garde pour lui — pas par égoïsme, parce qu'il n'y a nulle part où la mettre. Les apprentissages ne se cumulent pas. Chaque départ, chaque arrivée, remet les compteurs à zéro.</p>
+        <blockquote><strong>Pour passer au niveau 3 :</strong> le problème n'est plus l'IA, c'est l'endroit où vit le savoir de ta boîte. Il faut le sortir des têtes et des boîtes mail.</blockquote>
+      </section>
+
+      <section id="niveau-3">
+        <h2>Niveau 3 — L'architecte</h2>
+        <p>C'est ici que tout bascule. C'est aussi le niveau que presque personne n'atteint — et celui que ce guide veut te faire franchir.</p>
+        <p><strong>Le principe.</strong> Un <strong>cerveau partagé</strong> : un seul endroit où vivent tes clients, tes process, tes décisions, ton historique. Lisible par toute l'équipe. Et lisible par l'IA — qui ne repart plus jamais de zéro.</p>
+        <p>Chez Silex, c'est un simple dossier partagé, synchronisé entre nos machines. Claude Code tourne dessus. Quand l'un de nous ouvre une session, il sait ce que l'autre a fait la veille, quels clients sont en cours, quelles décisions ont été prises et pourquoi. On ne se réexplique plus rien — ni entre nous, ni à l'IA.</p>
+        <h3>Comment on construit un cerveau partagé, étape par étape</h3>
+        <ol>
+          <li><strong>Choisis le socle le plus simple possible.</strong> Un dossier partagé (Drive, Dropbox) rempli de fichiers texte. Pas de base de données, pas d'outil miracle. Des fichiers que l'IA et les humains lisent pareil.</li>
+          <li><strong>Structure avant de remplir.</strong> Une arborescence claire : l'entreprise (vision, offre), les clients (un dossier chacun), les process, les réunions, les décisions. Dix dossiers max au premier niveau. Si tu hésites où ranger un truc, ta structure est trop compliquée.</li>
+          <li><strong>Écris le fichier de contexte.</strong> Un document racine qui explique à l'IA qui vous êtes, ce que vous vendez, comment vous travaillez, où trouver quoi. C'est le document le plus rentable que tu écriras cette année.</li>
+          <li><strong>Installe le rituel de passation.</strong> Chaque session de travail se termine par une note : ce qui a été fait, ce qui a été décidé, ce qui attend. C'est ce qui transforme un dossier mort en cerveau vivant. Chez nous, c'est automatique : l'IA rédige la passation et la poste sur Slack.</li>
+          <li><strong>Donne l'accès à l'IA — en lecture ET en écriture.</strong> C'est le point que tout le monde rate. Un cerveau que l'IA ne fait que lire, c'est une documentation. Un cerveau qu'elle enrichit à chaque session — nouvelles notes, nouvelles décisions, nouveaux comptes rendus — c'est une mémoire qui compose.</li>
+        </ol>
+        <div class="metier">
+          <div class="m-title">Ce que ça donne par métier</div>
+          <ul>
+            <li><strong>Dirigeant</strong> — tu demandes «&nbsp;où en est-on avec le client X ?&nbsp;» et la réponse tient compte de tout l'historique, pas de ta mémoire.</li>
+            <li><strong>Commercial</strong> — chaque call est préparé automatiquement : historique du prospect, échanges passés, objections déjà levées.</li>
+            <li><strong>Ops</strong> — un nouveau collaborateur est opérationnel en jours, pas en mois : tout le savoir de la boîte est interrogeable.</li>
+          </ul>
+        </div>
+        <p><strong>Le ROI.</strong> Structurel, cette fois. Ce n'est plus «&nbsp;du temps gagné&nbsp;», c'est une capacité que tes concurrents n'ont pas : une boîte qui n'oublie rien.</p>
+      </section>
+
+      <section id="niveau-4">
+        <h2>Niveau 4 — Le multiplicateur</h2>
+        <p><strong>Le principe.</strong> Une fois le cerveau en place, tu ne l'utilises plus seulement toi. Tu construis des <strong>agents</strong> — des IA qui font un travail entier, en autonomie — et chacun lit et écrit dans ce même cerveau.</p>
+        <p>Chez Silex, Rocky est notre agent de maintenance. Un client remonte un ticket : Rocky lit le contexte du client dans le cerveau, diagnostique, corrige, documente ce qu'il a fait — en moins de 6 heures, sans qu'on lui redise rien. Chaque ticket résolu enrichit le cerveau. L'agent suivant part de plus haut.</p>
+        <blockquote>C'est ça, le multiplicateur : <strong>chaque interaction améliore le système</strong>. Ce n'est plus toi qui utilises l'IA. C'est ta boîte qui tourne dessus.</blockquote>
+        <div class="metier">
+          <div class="m-title">Ce que ça donne par métier</div>
+          <ul>
+            <li><strong>Dirigeant</strong> — un agent de veille lit tes canaux et tes calls, et te sort chaque semaine ce qui mérite ton attention.</li>
+            <li><strong>Commercial</strong> — un agent prépare tes RDV, met le CRM à jour après chaque call, relance les prospects silencieux.</li>
+            <li><strong>Ops</strong> — un agent de support résout le premier niveau, escalade le reste avec tout le contexte déjà rassemblé.</li>
+          </ul>
+        </div>
+        <p><strong>Les prérequis honnêtes.</strong> Le niveau 4 sans le niveau 3, c'est un gadget qui hallucine. Un agent n'est fiable que si son contexte l'est : process documentés, périmètre étroit, validation humaine au début, escalade prévue. Commence par UN agent sur UN périmètre borné — le nôtre a commencé par les tickets de maintenance, pas par «&nbsp;automatiser l'entreprise&nbsp;».</p>
+      </section>
+
+      <section id="erreurs">
+        <h2>Les erreurs qu'on a faites</h2>
+        <p><em>Pour que tu ne les refasses pas.</em></p>
+        <ol>
+          <li><strong>Rester au niveau 1 trop longtemps.</strong> On pensait que l'IA c'était bon pour écrire des mails plus vite. Le coût de cette croyance se mesure en mois perdus.</li>
+          <li><strong>Dupliquer l'information.</strong> Un chiffre copié dans trois documents, c'est deux documents faux dans un mois. Règle : chaque info vit à UN endroit, les autres pointent vers lui.</li>
+          <li><strong>Mettre des secrets dans le cerveau partagé.</strong> Clés API, webhooks, mots de passe : jamais dans un dossier partagé. Chaque machine garde ses secrets en local. On l'a appris en frôlant l'incident.</li>
+          <li><strong>Négliger les conventions de nommage.</strong> Sans règles (langue, format de dates, majuscules), le cerveau devient un grenier en trois semaines. Fixe les conventions au jour 1, écris-les dans le fichier de contexte.</li>
+          <li><strong>Sous-estimer la synchronisation.</strong> Un dossier partagé entre plusieurs machines, c'est des conflits et des suppressions accidentelles si personne ne définit qui écrit quoi. Définis un sens de synchronisation clair avant d'inviter la deuxième personne.</li>
+          <li><strong>Vouloir tout automatiser d'un coup.</strong> Chaque niveau prend moins d'un mois — mais dans l'ordre. Sauter une étape, c'est la refaire.</li>
+          <li><strong>Attendre d'avoir des développeurs.</strong> On n'en avait pas. Il n'en faut pas. Il faut de la structure, des conventions, et de la constance.</li>
+        </ol>
+      </section>
+
+      <section id="plan">
+        <h2>Ton plan des 30 prochains jours</h2>
+        <ul>
+          <li><strong>Semaine 1</strong> — Choisis 3 tâches récurrentes, délègue-les entièrement à l'IA. Note le temps récupéré. <em>(Niveau 1 → 2)</em></li>
+          <li><strong>Semaine 2</strong> — Crée le dossier partagé. Structure l'arborescence. Écris le fichier de contexte. <em>(Niveau 2 → 3)</em></li>
+          <li><strong>Semaine 3</strong> — Migre tes 3 clients les plus actifs dans le cerveau. Installe le rituel de passation.</li>
+          <li><strong>Semaine 4</strong> — Branche l'IA sur le cerveau, en lecture et en écriture. Mesure : combien de fois as-tu réexpliqué quelque chose cette semaine ? Si la réponse est «&nbsp;zéro&nbsp;», tu es niveau 3.</li>
+        </ul>
+        <p>Le niveau 4 vient ensuite — un agent, un périmètre, puis on compose.</p>
+
+        <div class="card cta-final">
+          <h3>Et si tu veux aller plus vite</h3>
+          <p>On a fait ce chemin pour nous, puis pour des dizaines d'entreprises. C'est exactement ce qu'on fait chez Silex : on installe le cerveau, les process et les agents dans ta boîte — et ton équipe apprend à les faire vivre. Tu as rempli le diagnostic : on sait déjà où tu en es.</p>
+          <a class="btn" href="mailto:p@gosilex.com?subject=Mon%20diagnostic%20Guide%20Claude">Parler de ta situation avec Pierre</a>
+        </div>
+        <p style="margin-top: 24px; color: var(--muted); font-size: 14.5px;"><em>— Pierre &amp; Arman, Silex</em></p>
+      </section>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© Silex — <a href="https://gosilex.com">gosilex.com</a></span>
+      <a href="mailto:p@gosilex.com">p@gosilex.com</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var links = document.querySelectorAll("#guide-nav a");
+      var sections = Array.prototype.map.call(links, function (a) {
+        return document.getElementById(a.getAttribute("href").slice(1));
+      });
+      function setActive() {
+        var pos = window.scrollY + 120;
+        var active = 0;
+        sections.forEach(function (s, i) { if (s && s.offsetTop <= pos) { active = i; } });
+        links.forEach(function (a, i) { a.classList.toggle("active", i === active); });
+      }
+      window.addEventListener("scroll", setActive, { passive: true });
+      setActive();
+    })();
+  </script>
+</body>
+</html>
