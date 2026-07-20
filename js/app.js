@@ -172,16 +172,18 @@
     var prenom = $("f-prenom").value.trim();
     var nom = $("f-nom").value.trim();
     var email = $("f-email").value.trim();
+    var tel = $("f-tel").value.trim();
     var site = $("f-site").value.trim();
     var douleurCat = $("f-douleur").value;
     var douleurTxt = $("f-verbatim").value.trim();
 
-    ["f-prenom", "f-nom", "f-email", "f-douleur"].forEach(function (id) { $(id).classList.remove("invalid"); });
+    ["f-prenom", "f-nom", "f-email", "f-tel", "f-douleur"].forEach(function (id) { $(id).classList.remove("invalid"); });
 
     var missing = [];
     if (!prenom) { missing.push("f-prenom"); }
     if (!nom) { missing.push("f-nom"); }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { missing.push("f-email"); }
+    if (tel.replace(/[^0-9]/g, "").length < 6) { missing.push("f-tel"); }
     if (!douleurCat) { missing.push("f-douleur"); }
     if (missing.length) {
       missing.forEach(function (id) { $(id).classList.add("invalid"); });
@@ -198,6 +200,7 @@
       prenom: prenom,
       nom: nom,
       email: email,
+      telephone: tel,
       site: site,
       douleurCat: douleurCat,
       douleurTxt: douleurTxt,

@@ -37,6 +37,7 @@ function validate(lead) {
   if (lead.website) return "spam"; // honeypot rempli → bot
   if (!lead.prenom || !lead.nom) return "Prénom et nom requis.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(lead.email || "")) return "Email invalide.";
+  if ((lead.telephone || "").replace(/[^0-9]/g, "").length < 6) return "Téléphone requis.";
   if (!lead.douleurCat) return "Irritant requis.";
   return null;
 }
@@ -48,6 +49,7 @@ function slackText(lead) {
   const lines = [
     `🔥 *Nouveau lead — Guide Claude*`,
     `*${esc(lead.prenom)} ${esc(lead.nom)}* — ${esc(lead.email)}`,
+    lead.telephone ? `📞 ${esc(lead.telephone)} — à appeler sous 24 h` : null,
     lead.site ? `Site : ${esc(lead.site)}` : null,
     `Diagnostic : ${niveau}`,
     `Irritant : ${esc(lead.douleurCat)}`,
@@ -153,6 +155,32 @@ async function pushAttio(lead, warnings) {
       warnings.push("attio: entrée liste non créée");
     }
   }
+  // Téléphone sur la fiche — best-effort séparé : un format que le workspace
+  // n'arrive pas à parser ne doit jamais casser la fiche ni la note.
+  if (recordId && lead.telephone) {
+    try {
+      const pr = await fetch(
+        `https://api.attio.com/v2/objects/people/records/${recordId}`,
+        {
+          method: "PATCH",
+          headers,
+          body: JSON.stringify({
+            data: {
+              values: {
+                phone_numbers: [
+                  { original_phone_number: lead.telephone, country_code: "FR" },
+                ],
+              },
+            },
+          }),
+        }
+      );
+      if (!pr.ok) warnings.push("attio: téléphone non enregistré sur la fiche");
+    } catch {
+      warnings.push("attio: téléphone non enregistré sur la fiche");
+    }
+  }
+
   if (recordId) {
     const niveau = lead.niveau
       ? `Niveau ${lead.niveau} — ${LEVEL_NAMES[lead.niveau] || "?"} (score ${lead.score}/20)`
@@ -168,6 +196,7 @@ async function pushAttio(lead, warnings) {
           format: "plaintext",
           content: [
             `Source : ${lead.source || "s.gosilex.com/guide"}`,
+            `Téléphone : ${lead.telephone || "non renseigné"} (à appeler sous 24 h)`,
             `Site : ${lead.site || "non renseigné"}`,
             `Diagnostic : ${niveau}`,
             `Irritant : ${lead.douleurCat}`,
@@ -194,6 +223,7 @@ async function pushBrevo(lead, warnings) {
     attributes: {
       PRENOM: lead.prenom,
       NOM: lead.nom,
+      TELEPHONE: lead.telephone || "",
       SITE_WEB: lead.site || "",
       DOULEUR: lead.douleurCat,
       NIVEAU_IA: lead.niveau || 0,
