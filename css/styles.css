@@ -95,10 +95,14 @@ h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--in
 .btn:disabled { opacity: 0.55; cursor: default; }
 .btn-block { width: 100%; }
 .btn-ghost {
-  background: transparent; color: var(--muted);
-  font-size: 14px; font-weight: 500; padding: 8px 12px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  border: none; cursor: pointer; text-decoration: none;
+  font-family: var(--font); background: transparent; color: var(--muted);
+  font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 .btn-ghost:hover { background: var(--subtle); color: var(--body); }
+.btn-ghost:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* ── Cards ── */
 .card {
@@ -196,7 +200,7 @@ h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--in
 .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
 .field label { font-size: 13.5px; font-weight: 600; color: var(--ink); }
 .field .opt { font-weight: 400; color: var(--muted); }
-input[type="text"], input[type="email"], input[type="url"], select, textarea {
+input[type="text"], input[type="email"], input[type="url"], input[type="tel"], select, textarea {
   font-family: var(--font); font-size: 15.5px; color: var(--body);
   background: var(--subtle); border: 1px solid var(--border);
   border-radius: var(--r-input); padding: 12px 14px;
