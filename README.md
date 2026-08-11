@@ -6,7 +6,7 @@ Slack / Attio / Brevo.
 
 - **Prod** : `s.gosilex.com/guide` (shortlink Shlink → déploiement Vercel)
 - **Contenu source du guide** : vault `09_COMMUNICATION/Lead_Magnet_Guide_Claude/Guide_4_Niveaux.md`
-- **Leads Slack** : canal `#int-closing` (bot Flint, déjà membre)
+- **Leads Slack** : canal `#int-leads` (bot **Lucy**, déjà membre)
 
 ## Parcours
 
@@ -24,15 +24,15 @@ Slack / Attio / Brevo.
 ```bash
 node dev-server.mjs          # http://localhost:3600
 # avec Slack réel :
-source ~/.config/silex/slack.env && SLACK_CHANNEL_LEADS=C0BJU9GNPPA node dev-server.mjs
+source ~/.config/silex/slack.env && SLACK_CHANNEL_LEADS=C0B2S92HFNC node dev-server.mjs
 ```
 
 ## Variables d'environnement (Vercel)
 
 | Variable | Requis | Rôle |
 |---|---|---|
-| `SLACK_BOT_TOKEN` | oui | Bot Flint — notifs leads (`chat.postMessage`) |
-| `SLACK_CHANNEL_LEADS` | oui | `C0BJU9GNPPA` = `#int-closing` |
+| `SLACK_BOT_TOKEN` | oui | Bot **Lucy** — notifs leads (`chat.postMessage`, BW `slack/lucy`) |
+| `SLACK_CHANNEL_LEADS` | oui | `C0B2S92HFNC` = `#int-leads` (canal privé : bot déjà invité) |
 | `SLACK_WEBHOOK` | non | Repli si pas de bot token |
 | `ATTIO_API_KEY` | non | Fiche personne + note diagnostic dans Attio |
 | `ATTIO_LIST_ID` | non | Liste Attio « Guide Claude » (`1a45f1fa-3a03-4014-af69-08c3c9564c60`) |
