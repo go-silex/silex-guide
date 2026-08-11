@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les 4 phases d'une transformation IA qui tient | Silex</title>
+  <meta name="description" content="La méthode en 4 phases pour installer l'IA dans une PME : la carte des données, la carte des rôles et des accès, les processus métiers, l'accès aux informations. Démarche étape par étape, schémas, pièges à éviter.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23E55B3C'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/phases.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="https://gosilex.com"><span class="logo-mark"></span>Silex</a>
+      <span class="header-tag">Les 4 phases</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <span class="eyebrow">Ressource Silex</span>
+        <h1>Les 4 phases d'une<br>transformation IA qui tient</h1>
+        <p class="sub">La plupart des dirigeants lancent leur transformation IA avec un abonnement ChatGPT pour toute l'équipe. Après 35 projets livrés, voici l'ordre qui marche vraiment, avec la démarche étape par étape, les schémas et les pièges de chaque phase.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#form">Recevoir la ressource</a>
+          <span class="hero-hint">Accès immédiat · 4 phases détaillées · Gratuit</span>
+        </div>
+      </section>
+
+      <div class="levels-strip">
+        <div class="level-chip"><span class="n">1</span><div class="t">La carte des données</div></div>
+        <div class="level-chip"><span class="n">2</span><div class="t">Les rôles et les accès</div></div>
+        <div class="level-chip"><span class="n">3</span><div class="t">Les processus métiers</div></div>
+        <div class="level-chip"><span class="n">4</span><div class="t">L'accès aux informations</div></div>
+      </div>
+
+      <section class="pitch">
+        <div class="card pitch-card">
+          <h2>La plupart des boîtes sautent directement à la&nbsp;4</h2>
+          <p>Elles achètent un outil IA, le branchent sur rien, et concluent que «&nbsp;l'IA ne marche pas chez nous&nbsp;».</p>
+          <p><strong>L'IA marche. C'est le contexte qui manque.</strong></p>
+        </div>
+
+        <ul class="bullets">
+          <li><strong>Ce que tu trouves dedans.</strong> Les 4 phases dans l'ordre, chacune avec sa démarche numérotée, son schéma, son livrable de fin de phase et le piège qui la fait rater.</li>
+          <li><strong>Pour qui.</strong> Un dirigeant qui veut lancer sa transformation IA sans brûler six mois, ou qui l'a déjà lancée et sent que ça ne prend pas.</li>
+          <li><strong>Combien de temps.</strong> 12 minutes de lecture. Aucune ligne de code nécessaire.</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- ═══ Formulaire ═══ -->
+    <div class="wrap-narrow" id="form">
+      <div class="card form-card">
+        <div class="form-head">
+          <h3>Reçois la ressource</h3>
+          <p>Accès immédiat après validation. Pierre lit chaque réponse&nbsp;: dis-nous où tu en es, c'est ce qui rend le rappel utile.</p>
+        </div>
+
+        <div class="progress form-progress"><div class="progress-bar" id="form-progress-bar"></div></div>
+        <div class="fstep-count" id="fstep-count">Étape 1 sur 2 · Toi</div>
+
+        <div class="form-error" id="form-error"></div>
+
+        <form id="lead-form" novalidate>
+          <!-- Étape 1 -->
+          <div class="fstep" id="fstep-1">
+            <div class="form-grid">
+              <div class="field">
+                <label for="f-prenom">Prénom</label>
+                <input type="text" id="f-prenom" name="prenom" autocomplete="given-name" required>
+              </div>
+              <div class="field">
+                <label for="f-nom">Nom</label>
+                <input type="text" id="f-nom" name="nom" autocomplete="family-name" required>
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" required>
+              </div>
+              <div class="field">
+                <label for="f-tel">Téléphone</label>
+                <input type="tel" id="f-tel" name="telephone" autocomplete="tel" inputmode="tel" placeholder="06 12 34 56 78" required>
+                <span class="hint">Pour te rappeler sous 24 h si ton cas s'y prête.</span>
+              </div>
+            </div>
+            <button type="button" class="btn btn-block" id="btn-next">Continuer</button>
+          </div>
+
+          <!-- Étape 2 -->
+          <div class="fstep hidden" id="fstep-2">
+            <div class="field">
+              <label for="f-site">Le site de ton entreprise</label>
+              <input type="url" id="f-site" name="site" placeholder="gosilex.com" autocomplete="url" inputmode="url" required>
+            </div>
+            <div class="field">
+              <label for="f-effectif">Nombre de salariés</label>
+              <select id="f-effectif" name="effectif" required>
+                <option value="" disabled selected>Choisis…</option>
+                <option value="1">1 personne (solo)</option>
+                <option value="2-10">2 à 10</option>
+                <option value="11-50">11 à 50</option>
+                <option value="51-200">51 à 200</option>
+                <option value="200+">Plus de 200</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-probleme">Ta problématique principale</label>
+              <select id="f-probleme" name="probleme" required>
+                <option value="" disabled selected>Choisis…</option>
+                <option value="repetitif">Je perds du temps sur des tâches répétitives</option>
+                <option value="equipes">Mes équipes n'utilisent pas l'IA, ou très mal</option>
+                <option value="outils">Mes outils ne se parlent pas, tout finit sur Excel</option>
+                <option value="demarrage">Je ne sais pas par où commencer sur l'IA</option>
+                <option value="embauche">Je veux faire plus sans embaucher</option>
+                <option value="commercial">Mon process commercial fuit (leads, relances, suivi)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-verbatim">Raconte en une phrase <span class="opt">(optionnel, mais précieux)</span></label>
+              <textarea id="f-verbatim" name="problemeTxt" placeholder="Ex. : on ressaisit tout à la main entre le CRM et la facturation…"></textarea>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label for="f-website">Website</label>
+              <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+            <p class="consent">En envoyant ce formulaire, tu acceptes d'accéder à la ressource et d'être recontacté·e par Silex à propos de ta situation. Pas de spam, désinscription en un clic.</p>
+            <button type="submit" class="btn btn-block" id="btn-submit">Accéder à la ressource</button>
+            <button type="button" class="btn-ghost fstep-back" id="btn-back">← Revenir en arrière</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© Silex · <a href="https://gosilex.com">gosilex.com</a></span>
+      <a href="mailto:p@gosilex.com">p@gosilex.com</a>
+    </div>
+  </footer>
+
+  <script src="js/phases.js"></script>
+</body>
+</html>

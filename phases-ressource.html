@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les 4 phases d'une transformation IA qui tient · la ressource | Silex</title>
+  <meta name="description" content="La carte des données, la carte des rôles et des accès, les processus métiers, l'accès aux informations. La démarche étape par étape, phase par phase.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23E55B3C'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/phases.css">
+  <script>
+    (function () {
+      var unlocked = false;
+      try { unlocked = sessionStorage.getItem("silex_phases_unlocked") === "1"; } catch (e) { /* no-op */ }
+      var k = new URLSearchParams(window.location.search).get("k");
+      if (k === "silex-4-phases") {
+        unlocked = true;
+        try { sessionStorage.setItem("silex_phases_unlocked", "1"); } catch (e) { /* no-op */ }
+      }
+      if (!unlocked) { window.location.replace("phases.html"); }
+    })();
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="https://gosilex.com"><span class="logo-mark"></span>Silex</a>
+      <span class="header-tag">Les 4 phases</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="guide-hero">
+      <div class="success-banner">✓ Ressource débloquée · bonne lecture</div>
+      <span class="eyebrow">La ressource · par Silex</span>
+      <h1>Les 4 phases d'une transformation IA qui tient</h1>
+      <p class="sub">La plupart des dirigeants lancent leur transformation IA avec un abonnement ChatGPT pour toute l'équipe. Après 35 projets livrés, on a compris qu'il fallait le faire dans cet ordre. Chaque phase a sa démarche, son livrable et son piège.</p>
+    </section>
+
+    <div class="card warn-card">
+      <h3>La plupart des boîtes sautent directement à la phase 4</h3>
+      <p>Elles achètent un outil IA, le branchent sur rien, et concluent que «&nbsp;l'IA ne marche pas chez nous&nbsp;». L'IA marche. C'est le contexte qui manque, et le contexte, ce sont les phases 1 à 3.</p>
+    </div>
+  </div>
+
+  <main class="res-shell">
+
+    <div class="res-tabs" role="tablist" aria-label="Les 4 phases">
+      <button class="res-tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" data-phase="1">
+        <span class="res-tab-n">1</span>
+        <span class="res-tab-t">La carte des données</span>
+      </button>
+      <button class="res-tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" data-phase="2">
+        <span class="res-tab-n">2</span>
+        <span class="res-tab-t">Les rôles et les accès</span>
+      </button>
+      <button class="res-tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" data-phase="3">
+        <span class="res-tab-n">3</span>
+        <span class="res-tab-t">Les processus métiers</span>
+      </button>
+      <button class="res-tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" data-phase="4">
+        <span class="res-tab-n">4</span>
+        <span class="res-tab-t">L'accès aux informations</span>
+      </button>
+    </div>
+
+    <!-- ═══════════════ PHASE 1 ═══════════════ -->
+    <section class="res-panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">
+      <div class="phase-head">
+        <span class="phase-badge">Phase 1 sur 4</span>
+        <h2>La carte des données</h2>
+        <p class="phase-meta">Compter 1 à 2 semaines · Le prérequis de tout le reste</p>
+      </div>
+
+      <h3>Le principe</h3>
+      <p>Où vit vraiment l'information&nbsp;: le CRM, les 12&nbsp;Excel, la boîte mail de l'associé, la tête du commercial. Tant que ce n'est pas écrit, l'IA travaille à l'aveugle&nbsp;: elle répond avec ce qu'elle a, c'est-à-dire rien.</p>
+      <p>Cette phase ne consiste pas à ranger. Elle consiste à <strong>écrire ce qui existe</strong>, y compris le désordre. On ne peut pas donner du contexte à une machine tant qu'on n'a pas nommé où il se trouve.</p>
+
+      <figure class="sch">
+        <svg viewBox="0 0 680 300" role="img" aria-label="Des sources d'information éparpillées (CRM, fichiers Excel, boîte mail, savoir oral) convergent vers un registre écrit qui nomme, pour chaque donnée, sa source de vérité et sa fiabilité.">
+          <defs>
+            <marker id="a1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+              <path d="M0 0 L9 4.5 L0 9 z" fill="var(--muted)"/>
+            </marker>
+          </defs>
+
+          <text x="10" y="16" class="s-th">CE QUI EXISTE AUJOURD'HUI</text>
+          <rect class="s-box-dash" x="10" y="34" width="180" height="42" rx="8"/>
+          <text x="26" y="60" class="s-t">Le CRM</text>
+          <rect class="s-box-dash" x="10" y="90" width="180" height="42" rx="8"/>
+          <text x="26" y="116" class="s-t">12 fichiers Excel</text>
+          <rect class="s-box-dash" x="10" y="146" width="180" height="42" rx="8"/>
+          <text x="26" y="172" class="s-t">La boîte mail de l'associé</text>
+          <rect class="s-box-dash" x="10" y="202" width="180" height="42" rx="8"/>
+          <text x="26" y="228" class="s-t">La tête du commercial</text>
+
+          <line x1="200" y1="139" x2="272" y2="139" class="s-arrow" marker-end="url(#a1)"/>
+
+          <text x="290" y="16" class="s-th">CE QUE TU ÉCRIS</text>
+          <rect class="s-box" x="290" y="34" width="380" height="214" rx="10"/>
+          <text x="308" y="58" class="s-tb">La carte des données</text>
+          <line x1="290" y1="72" x2="670" y2="72" class="s-line"/>
+          <text x="308" y="90" class="s-th">DONNÉE</text>
+          <text x="440" y="90" class="s-th">SOURCE DE VÉRITÉ</text>
+          <text x="580" y="90" class="s-th">FIABILITÉ</text>
+          <line x1="290" y1="100" x2="670" y2="100" class="s-line"/>
+
+          <text x="308" y="122" class="s-t">Prix pratiqués</text>
+          <text x="440" y="122" class="s-t">Excel «&#160;tarifs v7&#160;»</text>
+          <circle cx="586" cy="118" r="3.5" class="s-dot-err"/><text x="596" y="122" class="s-tm">3 versions</text>
+          <line x1="290" y1="134" x2="670" y2="134" class="s-line"/>
+
+          <text x="308" y="156" class="s-t">Historique client</text>
+          <text x="440" y="156" class="s-t">Le CRM</text>
+          <circle cx="586" cy="152" r="3.5" class="s-dot-ok"/><text x="596" y="156" class="s-tm">à jour</text>
+          <line x1="290" y1="168" x2="670" y2="168" class="s-line"/>
+
+          <text x="308" y="190" class="s-t">Marge par dossier</text>
+          <text x="440" y="190" class="s-t">Marc (oral)</text>
+          <circle cx="586" cy="186" r="3.5" class="s-dot-err"/><text x="596" y="190" class="s-tm">non écrite</text>
+          <line x1="290" y1="202" x2="670" y2="202" class="s-line"/>
+
+          <text x="308" y="224" class="s-t">Engagements pris</text>
+          <text x="440" y="224" class="s-t">La boîte mail</text>
+          <circle cx="586" cy="220" r="3.5" class="s-dot-err"/><text x="596" y="224" class="s-tm">non tracés</text>
+
+          <text x="10" y="276" class="s-tm">Une donnée qui ne vit que dans une tête reste une donnée. Elle est juste non écrite, et c'est exactement ce qu'il faut voir.</text>
+        </svg>
+        <figcaption>On ne cartographie pas les outils. On cartographie les informations, et pour chacune, qui fait foi.</figcaption>
+      </figure>
+
+      <h3>La démarche, étape par étape</h3>
+      <ol class="steps">
+        <li><strong>Liste tes 10 questions récurrentes.</strong> Pas tes outils&nbsp;: tes questions. «&nbsp;Où en est le dossier X&nbsp;?&nbsp;», «&nbsp;Combien on a facturé ce mois&nbsp;?&nbsp;», «&nbsp;Qu'est-ce qu'on a promis à ce client&nbsp;?&nbsp;». Ce sont elles qui révèlent les données qui comptent vraiment.</li>
+        <li><strong>Pour chaque question, remonte à la source.</strong> Note où l'info vit <em>réellement</em>, pas où elle devrait vivre. Si la réponse est «&nbsp;il faut demander à Marc&nbsp;», écris «&nbsp;Marc, oral&nbsp;».</li>
+        <li><strong>Qualifie chaque source sur quatre colonnes.</strong> Nom de la donnée, format (base, fichier, mail, oral), propriétaire, fiabilité (à jour, périmée, contradictoire).</li>
+        <li><strong>Marque les doublons et les contradictions.</strong> Le même chiffre à trois endroits, ce sont deux endroits faux. Tranche&nbsp;: pour chaque donnée, <strong>une seule source fait foi</strong>. Les autres pointeront vers elle.</li>
+        <li><strong>Sors trois données de l'oral.</strong> Prends les trois informations les plus critiques qui ne vivent que dans une tête, et bloque 30 minutes d'entretien pour chacune. C'est le premier actif réel que tu crées dans ce chantier.</li>
+      </ol>
+
+      <div class="livrable">
+        <div class="l-title">Ce que tu as à la fin de la phase 1</div>
+        <p>Un document unique qui liste, pour chaque donnée de la boîte&nbsp;: sa source de vérité, son propriétaire, son format et son niveau de fiabilité. Une page ou deux. Pas un projet informatique.</p>
+      </div>
+
+      <div class="piege">
+        <div class="p-title">Le piège</div>
+        <p>Vouloir nettoyer avant d'avoir cartographié. On cartographie l'existant, y compris ce qui est sale et contradictoire, car c'est précisément l'information la plus utile. Le ménage vient après, et uniquement là où ça compte.</p>
+      </div>
+
+      <nav class="panel-nav">
+        <span></span>
+        <button type="button" class="btn btn-sm" data-goto="2">Phase 2 · Les rôles et les accès →</button>
+      </nav>
+    </section>
+
+    <!-- ═══════════════ PHASE 2 ═══════════════ -->
+    <section class="res-panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" hidden>
+      <div class="phase-head">
+        <span class="phase-badge">Phase 2 sur 4</span>
+        <h2>La carte des rôles et des accès</h2>
+        <p class="phase-meta">Compter 1 semaine · La phase la plus rapide, la plus révélatrice</p>
+      </div>
+
+      <h3>Le principe</h3>
+      <p>Qui décide quoi. Qui fait quoi. Avec quelles infos.</p>
+      <p>C'est là qu'on découvre que <strong>la moitié du boulot d'un poste n'est écrite nulle part</strong>, et que trois personnes se croient responsables de la même chose. Tant que ce n'est pas clair entre humains, aucun agent ne saura à qui il parle ni ce qu'il a le droit de toucher.</p>
+
+      <figure class="sch">
+        <svg viewBox="0 0 680 300" role="img" aria-label="Matrice croisant quatre rôles (dirigeant, commercial, ops, agent IA) et quatre familles de données, indiquant pour chaque case un droit de lecture, de lecture et écriture, ou aucun accès. La case commercial fois marge est vide et signalée.">
+          <text x="10" y="24" class="s-th">RÔLE \ DONNÉE</text>
+          <text x="148" y="24" class="s-tb">Clients</text>
+          <text x="276" y="24" class="s-tb">Devis &amp; prix</text>
+          <text x="404" y="24" class="s-tb">Marge</text>
+          <text x="532" y="24" class="s-tb">Process</text>
+
+          <!-- Dirigeant -->
+          <text x="10" y="62" class="s-t">Dirigeant</text>
+          <rect class="s-cell" x="148" y="40" width="120" height="36" rx="6"/><text x="208" y="62" class="s-t s-mid">L + E</text>
+          <rect class="s-cell" x="276" y="40" width="120" height="36" rx="6"/><text x="336" y="62" class="s-t s-mid">L + E</text>
+          <rect class="s-cell" x="404" y="40" width="120" height="36" rx="6"/><text x="464" y="62" class="s-t s-mid">L + E</text>
+          <rect class="s-cell" x="532" y="40" width="120" height="36" rx="6"/><text x="592" y="62" class="s-t s-mid">L + E</text>
+
+          <!-- Commercial -->
+          <text x="10" y="110" class="s-t">Commercial</text>
+          <rect class="s-cell" x="148" y="88" width="120" height="36" rx="6"/><text x="208" y="110" class="s-t s-mid">L + E</text>
+          <rect class="s-cell" x="276" y="88" width="120" height="36" rx="6"/><text x="336" y="110" class="s-t s-mid">L + E</text>
+          <rect class="s-cell-err" x="404" y="88" width="120" height="36" rx="6"/><text x="464" y="110" class="s-t-err s-mid">rien</text>
+          <rect class="s-cell" x="532" y="88" width="120" height="36" rx="6"/><text x="592" y="110" class="s-t s-mid">L</text>
+
+          <!-- Ops -->
+          <text x="10" y="158" class="s-t">Ops / production</text>
+          <rect class="s-cell" x="148" y="136" width="120" height="36" rx="6"/><text x="208" y="158" class="s-t s-mid">L</text>
+          <rect class="s-cell" x="276" y="136" width="120" height="36" rx="6"/><text x="336" y="158" class="s-t s-mid">L</text>
+          <rect class="s-cell" x="404" y="136" width="120" height="36" rx="6"/><text x="464" y="158" class="s-t s-mid">rien</text>
+          <rect class="s-cell" x="532" y="136" width="120" height="36" rx="6"/><text x="592" y="158" class="s-t s-mid">L + E</text>
+
+          <!-- Agent IA -->
+          <text x="10" y="206" class="s-ta">Agent IA</text>
+          <rect class="s-cell-acc" x="148" y="184" width="120" height="36" rx="6"/><text x="208" y="206" class="s-t s-mid">L</text>
+          <rect class="s-cell-acc" x="276" y="184" width="120" height="36" rx="6"/><text x="336" y="206" class="s-t s-mid">L</text>
+          <rect class="s-cell-acc" x="404" y="184" width="120" height="36" rx="6"/><text x="464" y="206" class="s-t s-mid">L</text>
+          <rect class="s-cell-acc" x="532" y="184" width="120" height="36" rx="6"/><text x="592" y="206" class="s-t s-mid">L + E</text>
+
+          <circle cx="16" cy="246" r="4" class="s-dot-err"/>
+          <text x="30" y="250" class="s-tm">La case vide qui coûte cher&nbsp;: le commercial chiffre sans jamais voir la marge.</text>
+          <text x="10" y="278" class="s-tm">L = lit · L + E = lit et écrit · rien = pas d'accès, et c'est volontaire</text>
+        </svg>
+        <figcaption>La ligne «&nbsp;Agent IA&nbsp;» s'écrit dès maintenant, avant même d'avoir un agent. Décider ses droits à froid évite de les décider dans l'urgence.</figcaption>
+      </figure>
+
+      <h3>La démarche, étape par étape</h3>
+      <ol class="steps">
+        <li><strong>Liste les rôles, pas les personnes.</strong> «&nbsp;Commercial&nbsp;», pas «&nbsp;Julie&nbsp;». Une personne peut porter trois rôles&nbsp;: c'est normal, et il faut le voir écrit.</li>
+        <li><strong>Pour chaque rôle, écris ses décisions.</strong> Ce qu'il tranche seul, ce qu'il fait valider, ce qu'il ne décide jamais. Trois lignes suffisent. C'est souvent la première fois que c'est écrit.</li>
+        <li><strong>Croise les rôles et les données.</strong> Une matrice&nbsp;: en ligne les rôles, en colonne les données de la phase 1. Dans chaque case, un seul mot&nbsp;: lit, lit et écrit, ou rien.</li>
+        <li><strong>Repère les cases vides qui font mal.</strong> Un commercial qui n'a accès ni à la marge ni à l'historique de livraison chiffre à l'aveugle. Ces trous expliquent une bonne partie de tes irritants quotidiens.</li>
+        <li><strong>Ajoute la ligne «&nbsp;agent IA&nbsp;».</strong> Ce qu'il aura le droit de lire, ce qu'il aura le droit d'écrire. Fais-le maintenant, à froid, pendant que la question est théorique.</li>
+      </ol>
+
+      <div class="livrable">
+        <div class="l-title">Ce que tu as à la fin de la phase 2</div>
+        <p>La matrice rôles × données, avec les droits de lecture et d'écriture, ligne agent IA comprise. Et la liste, écrite noir sur blanc, des accès manquants qui coûtent de l'argent.</p>
+      </div>
+
+      <div class="piege">
+        <div class="p-title">Le piège</div>
+        <p>Confondre organigramme et carte des accès. L'organigramme dit qui reporte à qui. Ici, on écrit qui touche quelle information. Ça n'a rien à voir, et c'est le second qui pilote une IA.</p>
+      </div>
+
+      <nav class="panel-nav">
+        <button type="button" class="btn-ghost" data-goto="1">← Phase 1</button>
+        <button type="button" class="btn btn-sm" data-goto="3">Phase 3 · Les processus métiers →</button>
+      </nav>
+    </section>
+
+    <!-- ═══════════════ PHASE 3 ═══════════════ -->
+    <section class="res-panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0" hidden>
+      <div class="phase-head">
+        <span class="phase-badge">Phase 3 sur 4</span>
+        <h2>Les processus métiers</h2>
+        <p class="phase-meta">Compter 3 à 6 semaines · La plus dure, et la seule qui crée un écart</p>
+      </div>
+
+      <h3>Le principe</h3>
+      <p>Comment on qualifie un lead. Comment on chiffre. Comment on relance. Le savoir-faire sort des têtes et devient <strong>un actif de la boîte</strong>.</p>
+      <p>C'est la phase la plus dure. C'est aussi la seule qui crée un vrai écart avec tes concurrents&nbsp;: un concurrent peut acheter le même outil que toi demain matin, il ne peut pas acheter ta façon de chiffrer.</p>
+
+      <figure class="sch">
+        <svg viewBox="0 0 680 316" role="img" aria-label="Un processus commercial en quatre étapes, dont l'étape chiffrage est décortiquée en cinq champs : déclencheur, données lues, règle de décision, données écrites, sortie.">
+          <defs>
+            <marker id="a3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+              <path d="M0 0 L9 4.5 L0 9 z" fill="var(--muted)"/>
+            </marker>
+          </defs>
+
+          <rect class="s-box" x="10" y="22" width="150" height="44" rx="8"/>
+          <text x="85" y="49" class="s-t s-mid">Lead entrant</text>
+          <line x1="164" y1="44" x2="176" y2="44" class="s-arrow" marker-end="url(#a3)"/>
+
+          <rect class="s-box" x="180" y="22" width="150" height="44" rx="8"/>
+          <text x="255" y="49" class="s-t s-mid">Qualification</text>
+          <line x1="334" y1="44" x2="346" y2="44" class="s-arrow" marker-end="url(#a3)"/>
+
+          <rect class="s-accent" x="350" y="22" width="150" height="44" rx="8"/>
+          <text x="425" y="49" class="s-tb s-mid">Chiffrage</text>
+          <line x1="504" y1="44" x2="516" y2="44" class="s-arrow" marker-end="url(#a3)"/>
+
+          <rect class="s-box" x="520" y="22" width="150" height="44" rx="8"/>
+          <text x="595" y="49" class="s-t s-mid">Relance</text>
+
+          <line x1="425" y1="66" x2="425" y2="96" class="s-dash"/>
+
+          <rect class="s-box" x="10" y="96" width="660" height="210" rx="10"/>
+          <text x="28" y="122" class="s-tb">Zoom&nbsp;: l'étape «&#160;Chiffrage&#160;», décortiquée en 5 champs</text>
+          <line x1="10" y1="134" x2="670" y2="134" class="s-line"/>
+
+          <text x="28" y="160" class="s-th">DÉCLENCHEUR</text>
+          <text x="190" y="160" class="s-t">le lead est qualifié «&#160;projet réel, budget identifié&#160;»</text>
+
+          <text x="28" y="190" class="s-th">DONNÉES LUES</text>
+          <text x="190" y="190" class="s-t">grille tarifaire · historique du client · charge de l'atelier</text>
+
+          <text x="28" y="220" class="s-th">RÈGLE</text>
+          <text x="190" y="220" class="s-t">remise jusqu'à 8&#160;%&nbsp;; au-delà, validation du dirigeant</text>
+
+          <text x="28" y="250" class="s-th">DONNÉES ÉCRITES</text>
+          <text x="190" y="250" class="s-t">le devis, la marge estimée, la date de relance</text>
+
+          <text x="28" y="280" class="s-th">SORTIE</text>
+          <text x="190" y="280" class="s-t">devis envoyé + relance planifiée à J+5</text>
+        </svg>
+        <figcaption>Si tu n'arrives pas à écrire la règle, c'est qu'il y a un jugement implicite. C'est exactement ce qu'il faut extraire.</figcaption>
+      </figure>
+
+      <h3>La démarche, étape par étape</h3>
+      <ol class="steps">
+        <li><strong>Choisis trois processus, pas quinze.</strong> Les trois qui tournent le plus souvent et qui coûtent le plus cher quand ils ratent. Qualification, chiffrage, relance&nbsp;: c'est souvent ce trio.</li>
+        <li><strong>Fais raconter, ne fais pas décrire.</strong> Assieds-toi à côté de la personne pendant qu'elle le fait, une vraie fois, sur un vrai dossier. Ce qu'on te raconte en réunion, c'est le process officiel. Ce que tu vois, c'est le vrai.</li>
+        <li><strong>Découpe chaque étape en cinq champs.</strong> Déclencheur, données lues, règle de décision, données écrites, sortie. Le schéma ci-dessus est le gabarit&nbsp;: recopie-le tel quel.</li>
+        <li><strong>Écris les cas tordus.</strong> Le client qui négocie, le devis urgent, l'exception du vendredi soir. Un process sans ses exceptions ne passera jamais en production.</li>
+        <li><strong>Fais rejouer le process écrit par quelqu'un d'autre.</strong> Sans aide, sans poser de question. Ce qui le bloque, c'est ce qui manquait. Corrige, recommence, jusqu'à ce que ça passe de bout en bout.</li>
+      </ol>
+
+      <div class="livrable">
+        <div class="l-title">Ce que tu as à la fin de la phase 3</div>
+        <p>Trois processus écrits au niveau de détail où quelqu'un d'extérieur, ou une IA, peut les exécuter sans deviner. C'est la partie que tes concurrents ne peuvent pas acheter.</p>
+      </div>
+
+      <div class="piege">
+        <div class="p-title">Le piège</div>
+        <p>Vouloir tout documenter. Une boîte a soixante processus, cinq comptent. Documenter les cinquante-cinq autres, c'est six mois perdus et un classeur que personne n'ouvrira jamais.</p>
+      </div>
+
+      <nav class="panel-nav">
+        <button type="button" class="btn-ghost" data-goto="2">← Phase 2</button>
+        <button type="button" class="btn btn-sm" data-goto="4">Phase 4 · L'accès aux informations →</button>
+      </nav>
+    </section>
+
+    <!-- ═══════════════ PHASE 4 ═══════════════ -->
+    <section class="res-panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" tabindex="0" hidden>
+      <div class="phase-head">
+        <span class="phase-badge">Phase 4 sur 4</span>
+        <h2>L'accès aux informations</h2>
+        <p class="phase-meta">Compter 2 à 4 semaines · Le moment où tout devient utilisable</p>
+      </div>
+
+      <h3>Le principe</h3>
+      <p>Une interface pour les humains, un agent pour la machine. Et surtout&nbsp;: <strong>l'agent ne fait pas que lire, il écrit dedans</strong>. Là, le système s'améliore tout seul.</p>
+      <p>C'est la phase que tout le monde veut faire en premier. Faite après les trois autres, elle prend quelques semaines. Faite en premier, elle ne marche pas, et c'est de là que vient la phrase «&nbsp;on a testé l'IA, ça n'a rien donné&nbsp;».</p>
+
+      <figure class="sch">
+        <svg viewBox="0 0 680 300" role="img" aria-label="Un socle unique contenant les données, les rôles et les processus. L'équipe le consulte par une interface. L'agent lit le socle et y réécrit ce qu'il apprend, ce qui forme une boucle.">
+          <defs>
+            <marker id="a4" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+              <path d="M0 0 L9 4.5 L0 9 z" fill="var(--muted)"/>
+            </marker>
+            <marker id="a4b" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+              <path d="M0 0 L9 4.5 L0 9 z" fill="var(--accent)"/>
+            </marker>
+          </defs>
+
+          <rect class="s-box" x="40" y="20" width="340" height="54" rx="10"/>
+          <text x="62" y="43" class="s-tb">L'équipe</text>
+          <text x="62" y="62" class="s-tm">trouve l'info en moins de 30 secondes</text>
+
+          <line x1="210" y1="78" x2="210" y2="114" class="s-arrow" marker-end="url(#a4)"/>
+          <text x="222" y="102" class="s-tm">consulte</text>
+
+          <rect class="s-accent" x="40" y="120" width="340" height="150" rx="12"/>
+          <text x="62" y="148" class="s-tb">Le socle</text>
+          <rect class="s-chip" x="62" y="158" width="296" height="28" rx="6"/>
+          <text x="76" y="177" class="s-tm">Les données · phase 1</text>
+          <rect class="s-chip" x="62" y="192" width="296" height="28" rx="6"/>
+          <text x="76" y="211" class="s-tm">Les rôles et les accès · phase 2</text>
+          <rect class="s-chip" x="62" y="226" width="296" height="28" rx="6"/>
+          <text x="76" y="245" class="s-tm">Les processus · phase 3</text>
+
+          <rect class="s-box" x="470" y="155" width="180" height="80" rx="10"/>
+          <text x="492" y="186" class="s-tb">L'agent</text>
+          <text x="492" y="207" class="s-tm">lit et écrit</text>
+
+          <line x1="388" y1="178" x2="462" y2="178" class="s-arrow" marker-end="url(#a4)"/>
+          <text x="404" y="170" class="s-tm">lit</text>
+
+          <line x1="462" y1="212" x2="388" y2="212" class="s-arrow-acc" marker-end="url(#a4b)"/>
+          <text x="400" y="230" class="s-ta">écrit</text>
+
+          <text x="10" y="290" class="s-tm">L'agent n'est pas qu'un lecteur&nbsp;: ce qu'il apprend retourne dans le socle. C'est cette flèche-là qui fait que le système s'améliore tout seul.</text>
+        </svg>
+        <figcaption>Un socle que l'agent lit seulement, c'est de la documentation. Un socle qu'il enrichit à chaque passage, c'est une mémoire qui compose.</figcaption>
+      </figure>
+
+      <h3>La démarche, étape par étape</h3>
+      <ol class="steps">
+        <li><strong>Rassemble tout au même endroit.</strong> Les données de la phase 1, les rôles de la phase 2, les processus de la phase 3. Un socle unique, lisible par un humain comme par une machine. Un dossier de fichiers texte bien structuré suffit pour démarrer, et c'est souvent le meilleur choix.</li>
+        <li><strong>Ouvre l'accès humain en premier.</strong> Si ton équipe ne trouve pas l'info en 30 secondes, aucun agent ne sauvera l'affaire. Teste avec les 10 questions écrites en phase 1&nbsp;: elles sont ton jeu de test.</li>
+        <li><strong>Branche un premier agent, sur un périmètre étroit.</strong> Un processus, un rôle&nbsp;: prends celui de la phase 3 qui est le mieux écrit. Pas «&nbsp;automatiser l'entreprise&nbsp;».</li>
+        <li><strong>Donne-lui le droit d'écrire.</strong> C'est le point que presque tout le monde rate. Comptes rendus, décisions, cas nouveaux&nbsp;: ce que l'agent produit retourne dans le socle, sinon rien ne se cumule.</li>
+        <li><strong>Installe la boucle de validation.</strong> Au début, chaque sortie d'agent est relue, et ce qui est corrigé retourne dans le socle. Au bout de quelques semaines, tu relâches la validation là où il ne se trompe plus.</li>
+      </ol>
+
+      <div class="livrable">
+        <div class="l-title">Ce que tu as à la fin de la phase 4</div>
+        <p>Un socle unique interrogeable par toute l'équipe, et un agent en production sur un périmètre borné, qui lit et écrit dedans. À partir de là, chaque agent suivant part de plus haut que le précédent.</p>
+      </div>
+
+      <div class="piege">
+        <div class="p-title">Le piège</div>
+        <p>Commencer ici. C'est ce que fait la majorité&nbsp;: acheter un outil IA, le brancher sur rien, et conclure que l'IA ne marche pas. L'IA marche. C'est le contexte qui manque.</p>
+      </div>
+
+      <div class="card cta-final">
+        <h3>Et si tu veux le faire en quelques semaines plutôt qu'en un an</h3>
+        <p>C'est exactement notre métier&nbsp;: on installe les quatre phases dans ta boîte (la carte des données, les rôles, les processus, le socle et les agents), et ton équipe apprend à les faire vivre. Tu as rempli le formulaire, on sait déjà où tu en es.</p>
+        <a class="btn" href="https://s.gosilex.com/rdv" target="_blank" rel="noopener">Réserver un créneau avec Pierre</a>
+      </div>
+
+      <p class="signature"><em>Pierre &amp; Arman, Silex</em></p>
+
+      <nav class="panel-nav">
+        <button type="button" class="btn-ghost" data-goto="3">← Phase 3</button>
+        <span></span>
+      </nav>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© Silex · <a href="https://gosilex.com">gosilex.com</a></span>
+      <a href="mailto:p@gosilex.com">p@gosilex.com</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var tabs = Array.prototype.slice.call(document.querySelectorAll(".res-tab"));
+      var panels = Array.prototype.slice.call(document.querySelectorAll(".res-panel"));
+
+      function activate(n, focusTab) {
+        tabs.forEach(function (t) {
+          var on = t.dataset.phase === String(n);
+          t.classList.toggle("active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+          t.tabIndex = on ? 0 : -1;
+        });
+        panels.forEach(function (p) {
+          var on = p.id === "panel-" + n;
+          p.hidden = !on;
+          p.classList.toggle("active", on);
+        });
+        if (history.replaceState) {
+          history.replaceState(null, "", "#phase-" + n);
+        }
+        if (focusTab) {
+          var t = document.getElementById("tab-" + n);
+          if (t) { t.focus(); }
+        }
+      }
+
+      tabs.forEach(function (t) {
+        t.addEventListener("click", function () { activate(t.dataset.phase); });
+        t.addEventListener("keydown", function (ev) {
+          var i = tabs.indexOf(t);
+          if (ev.key === "ArrowRight") { ev.preventDefault(); activate(tabs[(i + 1) % tabs.length].dataset.phase, true); }
+          if (ev.key === "ArrowLeft") { ev.preventDefault(); activate(tabs[(i - 1 + tabs.length) % tabs.length].dataset.phase, true); }
+        });
+      });
+
+      document.querySelectorAll("[data-goto]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          activate(b.dataset.goto);
+          var shell = document.querySelector(".res-tabs");
+          if (shell) { window.scrollTo({ top: shell.offsetTop - 16, behavior: "smooth" }); }
+        });
+      });
+
+      var m = /^#phase-([1-4])$/.exec(window.location.hash);
+      activate(m ? m[1] : 1);
+    })();
+  </script>
+</body>
+</html>

@@ -1,11 +1,15 @@
 /**
- * POST /api/lead — capture un lead du Guide Claude.
+ * POST /api/lead : capture des leads des lead magnets Silex.
+ *
+ * Multi-source : le champ `magnet` du payload ("guide" | "phases") choisit la
+ * validation, le rendu Slack, la note Attio et la liste Attio de destination.
+ * Absent → "guide" (le front historique du Guide Claude ne l'envoie pas).
  *
  * Intégrations (chacune optionnelle, aucune ne bloque la capture) :
  *  - Slack : SLACK_BOT_TOKEN + SLACK_CHANNEL_LEADS (chat.postMessage)
  *            ou SLACK_WEBHOOK (incoming webhook) en repli
- *  - Attio : ATTIO_API_KEY → assert de la personne + note diagnostic
- *  - Brevo : BREVO_API_KEY → upsert contact (liste BREVO_LIST_ID) + email guide
+ *  - Attio : ATTIO_API_KEY → assert de la personne + note + entrée de liste
+ *  - Brevo : BREVO_API_KEY → upsert contact + email (magnet "guide" uniquement)
  *
  * Le payload complet est toujours loggé (trace de secours dans les logs Vercel).
  */
@@ -20,6 +24,148 @@ const LEVEL_NAMES = {
   4: "Le multiplicateur",
 };
 
+/* ── Ressource « Les 4 phases » ─────────────────────────────── */
+
+const EFFECTIF_LABEL = {
+  "1": "1 personne (solo)",
+  "2-10": "2 à 10 salariés",
+  "11-50": "11 à 50 salariés",
+  "51-200": "51 à 200 salariés",
+  "200+": "plus de 200 salariés",
+};
+
+const PROBLEME_LABEL = {
+  repetitif: "Perd du temps sur des tâches répétitives",
+  equipes: "Les équipes n'utilisent pas l'IA, ou très mal",
+  outils: "Les outils ne se parlent pas, tout finit sur Excel",
+  demarrage: "Ne sait pas par où commencer sur l'IA",
+  embauche: "Veut faire plus sans embaucher",
+  commercial: "Le process commercial fuit (leads, relances, suivi)",
+};
+
+// Poids de qualification : taille de boîte (0-3) + douleur (1-3) + email pro (1).
+const EFFECTIF_SCORE = { "1": 0, "2-10": 1, "11-50": 3, "51-200": 3, "200+": 2 };
+const PROBLEME_SCORE = {
+  repetitif: 2,
+  equipes: 3,
+  outils: 3,
+  demarrage: 1,
+  embauche: 2,
+  commercial: 3,
+};
+
+const FREE_MAIL = new Set([
+  "gmail.com", "googlemail.com", "outlook.com", "outlook.fr", "hotmail.com",
+  "hotmail.fr", "live.fr", "live.com", "msn.com", "yahoo.com", "yahoo.fr",
+  "free.fr", "orange.fr", "wanadoo.fr", "sfr.fr", "neuf.fr", "bbox.fr",
+  "laposte.net", "icloud.com", "me.com", "aol.com", "gmx.fr", "gmx.com",
+  "protonmail.com", "proton.me", "numericable.fr",
+]);
+
+function emailDomain(email) {
+  return String(email || "").split("@")[1]?.toLowerCase() || "";
+}
+
+function isEmailPro(email) {
+  const d = emailDomain(email);
+  return Boolean(d) && !FREE_MAIL.has(d);
+}
+
+function temperature(lead) {
+  const score =
+    (EFFECTIF_SCORE[lead.effectif] ?? 0) +
+    (PROBLEME_SCORE[lead.probleme] ?? 0) +
+    (isEmailPro(lead.email) ? 1 : 0);
+  if (score >= 5) return { emoji: "🔥", label: "CHAUD", score };
+  if (score >= 3) return { emoji: "🟠", label: "TIÈDE", score };
+  return { emoji: "⚪", label: "FROID", score };
+}
+
+/* ── Registre des lead magnets ──────────────────────────────── */
+
+const MAGNETS = {
+  guide: {
+    label: "Guide Claude",
+    defaultSource: "s.gosilex.com/guide",
+    attioListEnv: "ATTIO_LIST_ID",
+    noteTitle: "Lead Guide Claude (diagnostic)",
+    sep: "—", // format historique du Guide, laissé tel quel
+    brevo: true,
+    validate(lead) {
+      return lead.douleurCat ? null : "Irritant requis.";
+    },
+    header() {
+      return "🔥 *Nouveau lead — Guide Claude*";
+    },
+    details(lead) {
+      return [
+        lead.site ? `Site : ${esc(lead.site)}` : null,
+        `Diagnostic : ${diagnosticLine(lead)}`,
+        `Irritant : ${esc(lead.douleurCat)}`,
+        lead.douleurTxt ? `> « ${esc(lead.douleurTxt)} »` : null,
+      ];
+    },
+    noteLines(lead) {
+      return [
+        `Site : ${lead.site || "non renseigné"}`,
+        `Diagnostic : ${diagnosticLine(lead)}`,
+        `Irritant : ${lead.douleurCat}`,
+        lead.douleurTxt ? `Verbatim : « ${lead.douleurTxt} »` : null,
+      ];
+    },
+  },
+
+  phases: {
+    label: "Les 4 phases",
+    defaultSource: "s.gosilex.com/phases",
+    attioListEnv: "ATTIO_LIST_ID_PHASES",
+    noteTitle: "Lead · Ressource « Les 4 phases »",
+    sep: "·",
+    brevo: false,
+    validate(lead) {
+      if (!lead.site) return "URL de l'entreprise requise.";
+      if (!EFFECTIF_LABEL[lead.effectif]) return "Nombre de salariés requis.";
+      if (!PROBLEME_LABEL[lead.probleme]) return "Problématique principale requise.";
+      return null;
+    },
+    header(lead) {
+      const t = temperature(lead);
+      return `${t.emoji} *Nouveau lead ${t.label} · Les 4 phases*`;
+    },
+    details(lead) {
+      const t = temperature(lead);
+      return [
+        `Entreprise : ${esc(lead.site)} · ${EFFECTIF_LABEL[lead.effectif]}`,
+        `Problématique : ${PROBLEME_LABEL[lead.probleme]}`,
+        lead.problemeTxt ? `> « ${esc(lead.problemeTxt)} »` : null,
+        `Qualif : ${t.score}/7${isEmailPro(lead.email) ? "" : " · email perso"}`,
+      ];
+    },
+    noteLines(lead) {
+      const t = temperature(lead);
+      return [
+        `Entreprise : ${lead.site}`,
+        `Effectif : ${EFFECTIF_LABEL[lead.effectif]}`,
+        `Problématique : ${PROBLEME_LABEL[lead.probleme]}`,
+        lead.problemeTxt ? `Verbatim : « ${lead.problemeTxt} »` : null,
+        `Qualif : ${t.label} (${t.score}/7)${isEmailPro(lead.email) ? "" : " · email perso"}`,
+      ];
+    },
+  },
+};
+
+function getMagnet(lead) {
+  return MAGNETS[lead.magnet] || MAGNETS.guide;
+}
+
+function diagnosticLine(lead) {
+  return lead.niveau
+    ? `Niveau ${lead.niveau} — ${LEVEL_NAMES[lead.niveau] || "?"} (score ${lead.score}/20)`
+    : "non renseigné";
+}
+
+/* ── Helpers ────────────────────────────────────────────────── */
+
 function esc(s) {
   return String(s || "").slice(0, 1500);
 }
@@ -33,36 +179,32 @@ async function readBody(req) {
   return raw ? JSON.parse(raw) : {};
 }
 
-function validate(lead) {
+function validate(lead, magnet) {
   if (lead.website) return "spam"; // honeypot rempli → bot
   if (!lead.prenom || !lead.nom) return "Prénom et nom requis.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(lead.email || "")) return "Email invalide.";
   if ((lead.telephone || "").replace(/[^0-9]/g, "").length < 6) return "Téléphone requis.";
-  if (!lead.douleurCat) return "Irritant requis.";
-  return null;
+  return magnet.validate(lead);
 }
 
-function slackText(lead) {
-  const niveau = lead.niveau
-    ? `Niveau ${lead.niveau} — ${LEVEL_NAMES[lead.niveau] || "?"} (score ${lead.score}/20)`
-    : "diagnostic non renseigné";
+function slackText(lead, magnet) {
+  const sep = magnet.sep;
   const lines = [
-    `🔥 *Nouveau lead — Guide Claude*`,
-    `*${esc(lead.prenom)} ${esc(lead.nom)}* — ${esc(lead.email)}`,
-    lead.telephone ? `📞 ${esc(lead.telephone)} — à appeler sous 24 h` : null,
-    lead.site ? `Site : ${esc(lead.site)}` : null,
-    `Diagnostic : ${niveau}`,
-    `Irritant : ${esc(lead.douleurCat)}`,
-    lead.douleurTxt ? `> « ${esc(lead.douleurTxt)} »` : null,
+    magnet.header(lead),
+    `*${esc(lead.prenom)} ${esc(lead.nom)}* ${sep} ${esc(lead.email)}`,
+    lead.telephone ? `📞 ${esc(lead.telephone)} ${sep} à appeler sous 24 h` : null,
+    ...magnet.details(lead),
   ];
   return lines.filter(Boolean).join("\n");
 }
 
-async function notifySlack(lead, warnings) {
+/* ── Intégrations ───────────────────────────────────────────── */
+
+async function notifySlack(lead, magnet, warnings) {
   const token = process.env.SLACK_BOT_TOKEN;
   const channel = process.env.SLACK_CHANNEL_LEADS;
   const webhook = process.env.SLACK_WEBHOOK;
-  const text = slackText(lead);
+  const text = slackText(lead, magnet);
 
   if (token && channel) {
     const r = await fetch("https://slack.com/api/chat.postMessage", {
@@ -89,7 +231,7 @@ async function notifySlack(lead, warnings) {
   warnings.push("slack: non configuré");
 }
 
-async function pushAttio(lead, warnings) {
+async function pushAttio(lead, magnet, warnings) {
   const key = process.env.ATTIO_API_KEY;
   if (!key) {
     warnings.push("attio: non configuré");
@@ -125,7 +267,7 @@ async function pushAttio(lead, warnings) {
   if (!r.ok) throw new Error(`attio: ${JSON.stringify(j).slice(0, 200)}`);
 
   const recordId = j?.data?.id?.record_id;
-  const listId = process.env.ATTIO_LIST_ID;
+  const listId = process.env[magnet.attioListEnv];
   if (recordId && listId) {
     // Ajout à la liste (sans doublon si la personne y est déjà)
     try {
@@ -155,7 +297,7 @@ async function pushAttio(lead, warnings) {
       warnings.push("attio: entrée liste non créée");
     }
   }
-  // Téléphone sur la fiche — best-effort séparé : un format que le workspace
+  // Téléphone sur la fiche : best-effort séparé : un format que le workspace
   // n'arrive pas à parser ne doit jamais casser la fiche ni la note.
   if (recordId && lead.telephone) {
     try {
@@ -182,9 +324,6 @@ async function pushAttio(lead, warnings) {
   }
 
   if (recordId) {
-    const niveau = lead.niveau
-      ? `Niveau ${lead.niveau} — ${LEVEL_NAMES[lead.niveau] || "?"} (score ${lead.score}/20)`
-      : "non renseigné";
     await fetch("https://api.attio.com/v2/notes", {
       method: "POST",
       headers,
@@ -192,15 +331,12 @@ async function pushAttio(lead, warnings) {
         data: {
           parent_object: "people",
           parent_record_id: recordId,
-          title: "Lead Guide Claude (diagnostic)",
+          title: magnet.noteTitle,
           format: "plaintext",
           content: [
-            `Source : ${lead.source || "s.gosilex.com/guide"}`,
+            `Source : ${lead.source || magnet.defaultSource}`,
             `Téléphone : ${lead.telephone || "non renseigné"} (à appeler sous 24 h)`,
-            `Site : ${lead.site || "non renseigné"}`,
-            `Diagnostic : ${niveau}`,
-            `Irritant : ${lead.douleurCat}`,
-            lead.douleurTxt ? `Verbatim : « ${lead.douleurTxt} »` : null,
+            ...magnet.noteLines(lead),
           ]
             .filter(Boolean)
             .join("\n"),
@@ -210,7 +346,8 @@ async function pushAttio(lead, warnings) {
   }
 }
 
-async function pushBrevo(lead, warnings) {
+async function pushBrevo(lead, magnet, warnings) {
+  if (!magnet.brevo) return; // ressource délivrée en direct, pas d'email
   const key = process.env.BREVO_API_KEY;
   if (!key) {
     warnings.push("brevo: non configuré");
@@ -268,6 +405,8 @@ async function pushBrevo(lead, warnings) {
   }
 }
 
+/* ── Handler ────────────────────────────────────────────────── */
+
 export default async function handler(req, res) {
   if (req.method === "OPTIONS") {
     res.setHeader("Allow", "POST, OPTIONS");
@@ -284,7 +423,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false, error: "JSON invalide" });
   }
 
-  const invalid = validate(lead);
+  const magnet = getMagnet(lead);
+  const invalid = validate(lead, magnet);
   if (invalid === "spam") return res.status(200).json({ ok: true }); // on ne renseigne pas les bots
   if (invalid) return res.status(400).json({ ok: false, error: invalid });
 
@@ -293,9 +433,9 @@ export default async function handler(req, res) {
 
   const warnings = [];
   const results = await Promise.allSettled([
-    notifySlack(lead, warnings),
-    pushAttio(lead, warnings),
-    pushBrevo(lead, warnings),
+    notifySlack(lead, magnet, warnings),
+    pushAttio(lead, magnet, warnings),
+    pushBrevo(lead, magnet, warnings),
   ]);
   for (const r of results) {
     if (r.status === "rejected") warnings.push(String(r.reason?.message || r.reason));
