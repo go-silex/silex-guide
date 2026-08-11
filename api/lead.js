@@ -267,7 +267,10 @@ async function pushAttio(lead, magnet, warnings) {
   if (!r.ok) throw new Error(`attio: ${JSON.stringify(j).slice(0, 200)}`);
 
   const recordId = j?.data?.id?.record_id;
-  const listId = process.env[magnet.attioListEnv];
+  // Liste de destination : celle du magnet si elle est configurée, sinon la
+  // liste par défaut du workspace (aujourd'hui « Guide Claude - 5 personnes »,
+  // qui reçoit les leads des deux lead magnets).
+  const listId = process.env[magnet.attioListEnv] || process.env.ATTIO_LIST_ID;
   if (recordId && listId) {
     // Ajout à la liste (sans doublon si la personne y est déjà)
     try {
